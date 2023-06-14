@@ -1,0 +1,23 @@
+@use "sass:map";
+$bp: (
+  base: 0px,
+  xxs: 374px,
+  xs: 539px,
+  sm: 767px,
+  md: 991px,
+  lg: 1279px,
+  xl: 1439px,
+  xxl: 1599px,
+  xxxl: 1799px,
+);
+@mixin breakpoint($point) {
+  @if str-index($point, "max-") ==1 {
+    @media screen and (max-width: map.get($bp, str-slice($point, 5))) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: map.get($bp, $point)) {
+      @content;
+    }
+  }
+}
